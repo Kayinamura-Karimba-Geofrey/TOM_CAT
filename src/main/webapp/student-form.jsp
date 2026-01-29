@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>School / University</label>
+                        <label>School </label>
                         <input type="text" name="school" value="<c:out value='${student.school}' />"
                             placeholder="Harvard University" />
                     </div>

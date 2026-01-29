@@ -17,9 +17,9 @@
                 <a href="students" class="btn btn-primary">
                     Go to Dashboard
                 </a>
-                <a href="hello-servlet" class="btn btn-danger">
-                    Hello Servlet
-                </a>
+<%--                <a href="hello-servlet" class="btn btn-danger">--%>
+<%--                    Hello Servlet--%>
+<%--                </a>--%>
             </div>
 
             <p style="margin-top: 2rem; color: var(--text-secondary); font-size: 0.8rem;">
