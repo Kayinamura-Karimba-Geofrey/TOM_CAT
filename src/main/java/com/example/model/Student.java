@@ -30,7 +30,7 @@ public class Student {
     @Column(name = "age", nullable = false)
     private int age;
 
-    // Required by JPA
+
     public Student() {
     }
 
