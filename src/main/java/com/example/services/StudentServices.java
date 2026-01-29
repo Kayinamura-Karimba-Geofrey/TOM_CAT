@@ -87,6 +87,25 @@ public class StudentServices {
             return student;
         }
     }
+
+    public void updateStudent(Student student) {
+        try (Session session = sf.openSession()) {
+            session.beginTransaction();
+            session.merge(student);
+            session.getTransaction().commit();
+        }
+    }
+
+    public void deleteStudent(int id) {
+        try (Session session = sf.openSession()) {
+            session.beginTransaction();
+            Student student = session.get(Student.class, id);
+            if (student != null) {
+                session.remove(student);
+            }
+            session.getTransaction().commit();
+        }
+    }
 }
 
 

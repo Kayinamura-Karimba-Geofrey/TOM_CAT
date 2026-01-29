@@ -29,6 +29,12 @@ public class StudentServlet extends HttpServlet {
             case "new":
                 showNewForm(req, resp);
                 break;
+            case "edit":
+                showEditForm(req, resp);
+                break;
+            case "delete":
+                deleteStudent(req, resp);
+                break;
             case "list":
             default:
                 listStudents(req, resp);
@@ -41,19 +47,27 @@ public class StudentServlet extends HttpServlet {
         String action = req.getParameter("action");
         if ("insert".equals(action)) {
             insertStudent(req, resp);
+        } else if ("update".equals(action)) {
+            updateStudent(req, resp);
         } else {
             listStudents(req, resp);
         }
     }
 
     private void listStudents(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         List<Student> listStudent = studentServices.getAllData();
         req.setAttribute("listStudent", listStudent);
         req.getRequestDispatcher("student.jsp").forward(req, resp);
     }
 
     private void showNewForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("student-form.jsp").forward(req, resp);
+    }
+
+    private void showEditForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        Student existingStudent = studentServices.getStudentById(id);
+        req.setAttribute("student", existingStudent);
         req.getRequestDispatcher("student-form.jsp").forward(req, resp);
     }
 
@@ -74,6 +88,34 @@ public class StudentServlet extends HttpServlet {
 
         Student newStudent = new Student(name, email, school, dob);
         studentServices.addStudent(newStudent);
+        resp.sendRedirect("students");
+    }
+
+    private void updateStudent(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        String name = req.getParameter("name");
+        String email = req.getParameter("email");
+        String school = req.getParameter("school");
+        String dobStr = req.getParameter("dob");
+
+        LocalDate dob = LocalDate.now();
+        try {
+            if (dobStr != null && !dobStr.isEmpty()) {
+                dob = LocalDate.parse(dobStr);
+            }
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+        }
+
+        Student student = new Student(name, email, school, dob);
+        student.setId(id);
+        studentServices.updateStudent(student);
+        resp.sendRedirect("students");
+    }
+
+    private void deleteStudent(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        studentServices.deleteStudent(id);
         resp.sendRedirect("students");
     }
 }
