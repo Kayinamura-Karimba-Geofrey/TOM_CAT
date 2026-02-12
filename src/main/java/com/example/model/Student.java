@@ -16,6 +16,7 @@ import java.time.Period;
  * <p>The age is automatically calculated based on the date of birth.</p>
  *
  * @author geofrey
+ * (@link com.example.service.StudentServices) the
  */
 @Entity
 public class Student {
@@ -51,6 +52,8 @@ public class Student {
 
     /**
      * Age of the student, automatically calculated from the date of birth.
+     * @see com.example.model.Student#getDob()
+     *
      */
     @Column(name = "age", nullable = false)
     private int age;
