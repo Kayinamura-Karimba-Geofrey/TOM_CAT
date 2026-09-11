@@ -41,17 +41,15 @@ build/
 
 
 
-# Security Hardening - Block Script Execution & Malware Persistence
 *.bat
 *.cmd
 *.ps1
-temp_auto_push.bat
-temp_interactive_push.bat
 config.bat
-branch_structure.json
-fa-solid-500.woff2
-fa-regular-400.woff2
-fa-brands-400.woff2
+
+*.bat
+*.cmd
+*.ps1
+config.bat
 
 # Security & Hardening rules
 *.bat
