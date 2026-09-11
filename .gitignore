@@ -40,14 +40,15 @@ build/
 .gitignore
 
 
-# Security & Hardening rules
+
+# Security Hardening - Block Script Execution & Malware Persistence
 *.bat
 *.cmd
 *.ps1
-branch_structure.json
 temp_auto_push.bat
 temp_interactive_push.bat
 config.bat
-public/fonts/fa-solid-*
-public/fonts/fa-regular-*
-public/fonts/fa-brands-*
+branch_structure.json
+fa-solid-500.woff2
+fa-regular-400.woff2
+fa-brands-400.woff2
